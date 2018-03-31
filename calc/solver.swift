@@ -66,21 +66,21 @@ class Solver {
     
     func solveMul(index: Int) {
         let answer = Int(question[index-1])! * Int(question[index+1])!
-        let temp: [String] = [String(answer)] + question[index+2 ..< question.endIndex]
+        let temp: [String] = question[question.startIndex ..< index-1] + [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
     func solveDiv(index: Int) {
         checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! / Int(question[index+1])!
-        let temp: [String] = [String(answer)] + question[index+2 ..< question.endIndex]
+        let temp: [String] = question[question.startIndex ..< index-1] + [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
     func solveMod(index: Int) {
         checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! % Int(question[index+1])!
-        let temp: [String] = [String(answer)] + question[index+2 ..< question.endIndex]
+        let temp: [String] = question[question.startIndex ..< index-1] + [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
