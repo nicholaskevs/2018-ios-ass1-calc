@@ -18,20 +18,36 @@ class Solver {
     
     func solve() {
         while question.count > 1 {
-            while question.contains(operators[2]) {
-                solveMul(index: question.index(of: operators[2])!)
+            // multiplication, division, and modulation
+            while question.contains(operators[2]) || question.contains(operators[3]) || question.contains(operators[4]) {
+                for i in question.indices {
+                    if question[i] == operators[2] {
+                        solveMul(index: i)
+                        break
+                    }
+                    if question[i] == operators[3] {
+                        solveDiv(index: i)
+                        break
+                    }
+                    if question[i] == operators[4] {
+                        solveMod(index: i)
+                        break
+                    }
+                }
             }
-            while question.contains(operators[3]) {
-                solveDiv(index: question.index(of: operators[3])!)
-            }
-            while question.contains(operators[4]) {
-                solveMod(index: question.index(of: operators[4])!)
-            }
-            while question.contains(operators[0]) {
-                solveAdd(index: question.index(of: operators[0])!)
-            }
-            while question.contains(operators[1]) {
-                solveSub(index: question.index(of: operators[1])!)
+            
+            // addition and substraction
+            while question.contains(operators[0]) || question.contains(operators[1]) {
+                for i in question.indices {
+                    if question[i] == operators[0] {
+                        solveAdd(index: i)
+                        break
+                    }
+                    if question[i] == operators[1] {
+                        solveSub(index: i)
+                        break
+                    }
+                }
             }
         }
     }
