@@ -8,18 +8,29 @@
 
 import Foundation
 
+enum CalcError: Error {
+    case invalidInput
+    case divisionByZero
+}
+
 var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
 
-let parser = Parser(question: args)
+do {
+    let parser = Parser(question: args)
+    try parser.checkInputValidity()
+    
+    let solver = Solver(question: parser.question)
+    try solver.solve()
+    
+    // print the solution
+    print(solver.question[0])
 
-guard parser.checkInputValidity() else {
-    print("Invalid input.")
+} catch CalcError.invalidInput {
+    print("Error: Invalid input.")
     exit(1)
+} catch CalcError.divisionByZero {
+    print("Error: Division by zero.")
+    exit(2)
 }
 
-let solver = Solver(question: parser.question)
-
-solver.solve()
-
-print(solver.question[0])

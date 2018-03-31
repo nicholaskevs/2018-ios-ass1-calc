@@ -25,7 +25,7 @@ class Parser {
         }
     }
     
-    func checkInputValidity() -> Bool {
+    func checkInputValidity() throws {
         // checking if there is an operator
         if question.count > 1 {
             var counter = 0
@@ -35,14 +35,14 @@ class Parser {
                 }
             }
             if counter == 0 {
-                return false
+                throw CalcError.invalidInput
             }
         }
         
         // checking if the numbers are valid
         for q in question {
             if !operators.contains(q) && Int(q) == nil {
-                return false
+                throw CalcError.invalidInput
             }
         }
         
@@ -50,17 +50,15 @@ class Parser {
         
         // checking question format
         if operators.contains(question.last!) {
-            return false // last element must be a number
+            throw CalcError.invalidInput // last element must be a number
         }
         for i in question.indices {
             if i%2 == 0 && Int(question[i]) == nil {
-                return false // even index element must be a number
+                throw CalcError.invalidInput // even index element must be a number
             }
             if i%2 == 1 && !operators.contains(question[i]) {
-                return false // odd index element must be an operator
+                throw CalcError.invalidInput // odd index element must be an operator
             }
         }
-        
-        return true
     }
 }

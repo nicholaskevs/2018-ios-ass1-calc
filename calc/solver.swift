@@ -16,7 +16,7 @@ class Solver {
         self.question = question
     }
     
-    func solve() {
+    func solve() throws {
         while question.count > 1 {
             // multiplication, division, and modulation
             while question.contains(operators[2]) || question.contains(operators[3]) || question.contains(operators[4]) {
@@ -26,11 +26,11 @@ class Solver {
                         break
                     }
                     if question[i] == operators[3] {
-                        solveDiv(index: i)
+                        try solveDiv(index: i)
                         break
                     }
                     if question[i] == operators[4] {
-                        solveMod(index: i)
+                        try solveMod(index: i)
                         break
                     }
                 }
@@ -70,24 +70,23 @@ class Solver {
         question = temp
     }
     
-    func solveDiv(index: Int) {
-        checkDivisionByZero(index: index)
+    func solveDiv(index: Int) throws {
+        try checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! / Int(question[index+1])!
         let temp: [String] = question[question.startIndex ..< index-1] + [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
-    func solveMod(index: Int) {
-        checkDivisionByZero(index: index)
+    func solveMod(index: Int) throws {
+        try checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! % Int(question[index+1])!
         let temp: [String] = question[question.startIndex ..< index-1] + [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
-    func checkDivisionByZero(index: Int) {
+    func checkDivisionByZero(index: Int) throws {
         if question[index+1] == "0" {
-            print("Division by zero")
-            exit(2)
+            throw CalcError.divisionByZero
         }
     }
     
