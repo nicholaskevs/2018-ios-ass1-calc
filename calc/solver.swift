@@ -55,15 +55,24 @@ class Solver {
     }
     
     func solveDiv(index: Int) {
+        checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! / Int(question[index+1])!
         let temp: [String] = [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
     }
     
     func solveMod(index: Int) {
+        checkDivisionByZero(index: index)
         let answer = Int(question[index-1])! % Int(question[index+1])!
         let temp: [String] = [String(answer)] + question[index+2 ..< question.endIndex]
         question = temp
+    }
+    
+    func checkDivisionByZero(index: Int) {
+        if question[index+1] == "0" {
+            print("Division by zero")
+            exit(2)
+        }
     }
     
 }
