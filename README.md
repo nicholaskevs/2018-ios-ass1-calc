@@ -4,6 +4,12 @@
 
 [![Build Status](https://travis-ci.org/nksuts/ios-ass1-calc.svg?branch=master)](https://travis-ci.org/nksuts/ios-ass1-calc)
 
+__Github Link:__ https://github.com/nksuts/ios-ass1-calc
+
+__Student ID:__ 12483703
+
+__Student Name:__ Nicholas Kevin Santosa
+
 # Assessment Task 1
 
 Individual programming project: Command-line calculator
