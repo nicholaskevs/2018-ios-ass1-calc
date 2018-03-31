@@ -53,7 +53,7 @@ class Parser {
             return false // last element must be a number
         }
         for i in question.indices {
-            if i%2 == 0 && Int(question[i])==nil {
+            if i%2 == 0 && Int(question[i]) == nil {
                 return false // even index element must be a number
             }
             if i%2 == 1 && !operators.contains(question[i]) {
