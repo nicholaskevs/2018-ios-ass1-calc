@@ -17,7 +17,7 @@ class Parser {
     }
     
     // remove + sign infront of positive number e.g. +42 -> 42
-    func parse() {
+    func fixPositiveNumber() {
         for i in question.indices {
             if !operators.contains(question[i]) {
                 question[i] = String(Int(question[i])!)
@@ -39,14 +39,14 @@ class Parser {
             }
         }
         
-        parse()
-        
         // checking if the numbers are valid
         for q in question {
             if !operators.contains(q) && Int(q) == nil {
                 return false
             }
         }
+        
+        fixPositiveNumber()
         
         // checking question format
         if operators.contains(question.last!) {

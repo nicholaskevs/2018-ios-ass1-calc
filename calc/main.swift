@@ -18,7 +18,6 @@ guard parser.checkInputValidity() else {
     exit(1)
 }
 
-//parser.parse()
 let solver = Solver(question: parser.question)
 
-print(parser.question[0])
+print(solver.question[0])
